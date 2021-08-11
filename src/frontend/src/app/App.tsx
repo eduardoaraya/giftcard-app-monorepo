@@ -1,9 +1,19 @@
-import React from 'react';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import Layout from "./components/Layout";
+import RouterNavigation from "./router/router";
+import { theme } from "./shared/environiments";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Layout>
+          <RouterNavigation />
+        </Layout>
+      </div>
+    </ThemeProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-version: "3.7"
+ockeversion: "3.7"
 services:
   php:
     build:
@@ -29,7 +29,7 @@ services:
       - ./src/:/var/www/
       - ./nginx/config/:/etc/nginx/conf.d/
       - ./nginx/snippets/:/etc/nginx/snippets/
-    depends_on: 
+    depends_on:
       - php
       - front
     networks:
@@ -38,13 +38,13 @@ services:
     ports:
       - 80:80
   front:
-    image: node:latest
-    volumes: 
+    image: node:14
+    volumes:
       - ./src/frontend:/var/www/frontend
     ports:
       - 3000:3000
       - 35729:35729
-    networks: 
+    networks:
       - frontend
     environment:
       - CHOKIDAR_USEPOLLING=true
