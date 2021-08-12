@@ -5,7 +5,7 @@ import RouterNavigation from "./router/router";
 import { theme } from "./shared/environiments";
 import "./App.css";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -15,6 +15,6 @@ function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

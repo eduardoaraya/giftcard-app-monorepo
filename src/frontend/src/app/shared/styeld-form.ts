@@ -6,9 +6,11 @@ export const Input = styled.input<ThemeProps>`
   height: 45px;
   padding: 4px;
   border: none;
-  border-bottom: 2px solid ${({ theme }) => theme.primary};
   outline: none;
   margin: 4px 0px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  background: #fff;
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
 export const Button = styled.button<ThemeProps>`
@@ -29,4 +31,9 @@ export const Button = styled.button<ThemeProps>`
     background: #fff;
     color: ${({ theme }) => theme.secundary};
   }
+`;
+
+export const Lables = styled.label`
+  font-weight: bold;
+  color: ${({ theme }) => theme.secundary};
 `;
