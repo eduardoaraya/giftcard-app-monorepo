@@ -7,8 +7,8 @@ use App\Services\JwtService;
 use App\Contracts\JwtInterface;
 use App\Contracts\Token\TokenRepositoryInterface;
 use App\Contracts\Card\CardRepositoryInterface;
-use App\Repositories\Token\TokenRepositoryInterface;
-use App\Repositories\Card\CardRepositoryInterface;
+use App\Repositories\TokenRepositoryInterface;
+use App\Repositories\CardRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
