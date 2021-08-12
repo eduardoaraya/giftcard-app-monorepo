@@ -15,7 +15,7 @@ class CreateCards extends Migration
         Schema::create(CardEntityInterface::TABLE_NAME, function (Blueprint $table) {
             $table->id();
             $table->string(CardEntityInterface::NAME);
-            $table->string(CardEntityInterface::CARD_NUMBER, 16);
+            $table->string(CardEntityInterface::CARD_NUMBER, 16)->unique();
             $table->string(CardEntityInterface::PASSWORD);
             $table->enum(CardEntityInterface::STATUS, CardEntityInterface::STATUS_ALLOWED)->default(CardEntityInterface::ACTIVE);
             $table->bigInteger(CardEntityInterface::VALUE);

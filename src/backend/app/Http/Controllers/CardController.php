@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CardRepository;
+use App\Contracts\Card\CardRepositoryInterface;
 
 class CardController extends Controller
 {
@@ -12,15 +12,12 @@ class CardController extends Controller
      * @return void
      */
     public function __construct(
-        private CardRepository $cardRepository
+        private CardRepositoryInterface $cardRepository
     ) {
-        //
     }
 
     public function list()
     {
         return $this->cardRepository->getList();
     }
-
-    //
 }

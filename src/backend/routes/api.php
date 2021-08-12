@@ -13,5 +13,5 @@
 |
 */
 
-$router->get('/', 'CardController@list');
-$router->get('/token', 'AuthController@list');
+$router->get('/list', 'CardController@list');
+$router->post('/auth', 'AuthController@execute');
