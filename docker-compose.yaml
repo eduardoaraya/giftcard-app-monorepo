@@ -14,15 +14,16 @@ services:
     ports:
       - 9000:9000
   db:
-    image: postgres:latest
+    image: postgres:13
+    restart: always
     environment:
+      - POSTGRES_DB=giftcard
+      - POSTGRES_USER=totalchallenge
       - POSTGRES_PASSWORD=5678465
-      - POSTGRES_DATABASE=total
-      - POSTGRES_USERNAME=788889
     networks:
       - backend
     ports:
-      - 5534:5534
+      - 5432:5432
   web:
     image: nginx:latest
     volumes:
