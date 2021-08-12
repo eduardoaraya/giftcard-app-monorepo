@@ -3,11 +3,13 @@ import { Footer, Header, LayoutWrapper, PageWrapper } from "./style";
 
 const Layout: React.FC = ({ children }): JSX.Element => {
   return (
-    <LayoutWrapper>
+    <>
       <Header></Header>
-      <PageWrapper>{children}</PageWrapper>
+      <LayoutWrapper>
+        <PageWrapper>{children}</PageWrapper>
+      </LayoutWrapper>
       <Footer></Footer>
-    </LayoutWrapper>
+    </>
   );
 };
 
