@@ -15,10 +15,11 @@ class CreateTokens extends Migration
     {
         Schema::create(TokenEntityInterface::TABLE_NAME, function (Blueprint $table) {
             $table->id();
-            $table->foreignId(TokenEntityInterface::CARD_ID)->constrained('cards');
+            $table->bigInteger(TokenEntityInterface::CARD_ID)->unsigned()->unique();
             $table->text(TokenEntityInterface::TOKEN);
-            $table->dateTime(CardEntityInterface::TABLE_NAME);
+            $table->dateTime(TokenEntityInterface::EXPIRATE_AT);
             $table->timestamps();
+            $table->foreign(TokenEntityInterface::CARD_ID)->references('id')->on(CardEntityInterface::TABLE_NAME);
         });
     }
 
