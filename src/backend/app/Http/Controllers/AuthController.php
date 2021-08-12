@@ -2,26 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\TokenRepository;
-use App\Contracts\JwtInterface;
+use App\Contracts\AuthServiceInterface;
 
 class AuthController extends Controller
 {
     /**
-     * @param TokenRepository $tokenRepository
-     * @param JwtInterface $jwt
+     * @param AuthServiceInterface $authService
      */
     public function __construct(
-        private TokenRepository $tokenRepository,
-        private JwtInterface $jwt
+        private AuthServiceInterface $authService
     ) { }
 
-    public function execute()
+    /**
+     * @param Request $request
+     */
+    public function execute(Request $request)
     {
-        return response()->json([
-            'token' => $this->jwt->getJwt()->encode([
-                'teste' => true
-            ])
-        ], 200);
+        $this->validate($request, [
+            'card_number' => 'required|min:16|max:16|string',
+            'password' => 'required|min:6|max:6|string'
+        ]);
+
+        try {
+
+            $token = $this->authService->auth(
+                $request->input('card_number'),
+                $request->input('password')
+            );
+
+            return response()->json([
+                'token' => $token
+            ], 200);
+
+        } catch (AuthorizationException $exception) {
+
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 401);
+        }
     }
 }

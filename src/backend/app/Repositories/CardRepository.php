@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Contracts\Card\CardRepositoryInterface;
+use App\Contracts\Card\CardEntityInterface;
 use App\Models\Card;
 
 class CardRepository implements CardRepositoryInterface
@@ -12,11 +13,8 @@ class CardRepository implements CardRepositoryInterface
     ) {
     }
 
-    public function getList()
+    public function getByCardNumber(string $cardNumer)
     {
-        try {
-            return $this->model->get();
-        } catch (\Exception $e) {
-        }
+        return $this->model->where(CardEntityInterface::CARD_NUMBER, $cardNumer)->first();
     }
 }

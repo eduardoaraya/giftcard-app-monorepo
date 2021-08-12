@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-class AuthServiceInterface
+interface AuthServiceInterface
 {
-
+    public function auth(string $cardNumber, string $password): string;
 }
