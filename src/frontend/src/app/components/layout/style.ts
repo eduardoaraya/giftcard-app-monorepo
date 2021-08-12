@@ -11,7 +11,8 @@ export const Header = styled.div`
   width: 100%;
   position: fixed;
   height: ${headerHeight}px;
-  background: ${({ theme }) => theme.primary};
+  /* background: ${({ theme }) => theme.primary}; */
+  background: #fff;
   box-shadow: ${({ theme }) => theme.shadow};
 `;
 
@@ -33,6 +34,7 @@ export const Footer = styled.footer`
   position: relative;
   width: 100%;
   height: ${footerHeight}px;
-  background: ${({ theme }) => theme.primary};
+  /* background: ${({ theme }) => theme.primary}; */
   box-shadow: ${({ theme }) => theme.shadow};
+  background: #fff;
 `;

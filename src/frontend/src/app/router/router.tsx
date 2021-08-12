@@ -8,12 +8,18 @@ import {
   // useParams
 } from "react-router-dom";
 import Login from "../login";
+import MyCard from "../mycard";
 
 const RouterNavigation = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={Login} />
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route exact path="/mycard">
+          <MyCard />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

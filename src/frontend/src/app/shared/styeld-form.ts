@@ -4,12 +4,13 @@ import { ThemeProps } from "./environiments";
 export const Input = styled.input<ThemeProps>`
   width: 100%;
   height: 45px;
-  padding: 4px;
+  padding: 5px;
   border: none;
   outline: none;
   margin: 4px 0px;
-  box-shadow: ${({ theme }) => theme.shadow};
-  background: #fff;
+  /* box-shadow: ${({ theme }) => theme.shadow}; */
+  font-size: 16px;
+  background: ${({ theme }) => theme.hightLight};
   border-radius: ${({ theme }) => theme.borderRadius};
 `;
 
@@ -33,7 +34,16 @@ export const Button = styled.button<ThemeProps>`
   }
 `;
 
-export const Lables = styled.label`
+export const Lable = styled.label`
   font-weight: bold;
-  color: ${({ theme }) => theme.secundary};
+  color: ${({ theme }) => theme.fontColor};
+  margin-bottom: 0.3em;
+`;
+
+export const FormControll = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 `;

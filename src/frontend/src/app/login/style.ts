@@ -10,11 +10,13 @@ export const LoginPage = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.hightLight};
   flex: 1;
+  padding: 25px;
 `;
 
 export const LoginForm = styled.form<ThemeProps>`
   margin-top: -135px;
-  width: 340px;
+  max-width: 540px;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -24,7 +26,7 @@ export const LoginForm = styled.form<ThemeProps>`
   background: #fff;
 
   .login-input {
-    margin-top: 15px;
+    margin-top: 12px;
   }
   .submit-button {
     margin-top: 45px;
@@ -32,6 +34,6 @@ export const LoginForm = styled.form<ThemeProps>`
 `;
 
 export const Logo = styled.img`
-  width: 100%;
-  margin: 25px 0px;
+  width: 200px;
+  margin: 25px auto;
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 import RouterNavigation from "./router/router";
 import { theme } from "./shared/environiments";
 import "./App.css";
