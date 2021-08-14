@@ -19,5 +19,10 @@ class Token extends Model
     protected $fillable = [
         TokenEntityInterface::TOKEN,
         TokenEntityInterface::CARD_ID,
+        TokenEntityInterface::EXPIRATE_AT,
+    ];
+
+    protected $hidden = [
+        TokenEntityInterface::EXPIRATE_AT
     ];
 }

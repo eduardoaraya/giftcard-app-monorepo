@@ -2,9 +2,23 @@
 
 namespace App\Contracts\Token;
 
+use App\Models\Token;
+
 interface TokenRepositoryInterface
 {
-    public function getByToken(string $token);
 
-    public function updateToken(string $cardId, array $data);
+    /**
+     * @param string $cardId
+     * @param array $data
+     *
+     * @return Token
+     */
+    public function updateToken(string $cardId, array $data): Token;
+
+    /**
+     * @param string $token
+     *
+     * @return Token|null
+     */
+    public function getByToken(string $token): ?Token;
 }

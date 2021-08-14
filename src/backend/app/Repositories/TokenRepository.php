@@ -9,12 +9,18 @@ use Exception;
 
 class TokenRepository implements TokenRepositoryInterface
 {
+    /**
+     * @param Token $model
+     */
     public function __construct(
         private Token $model
     ) {
     }
 
-    public function updateToken(string $cardId, array $data)
+    /**
+     * @inheritdoc
+     */
+    public function updateToken(string $cardId, array $data): Token
     {
         $token = $this->model->where(TokenEntityInterface::CARD_ID, $cardId)->first();
         if (!$token) {
@@ -22,10 +28,14 @@ class TokenRepository implements TokenRepositoryInterface
                 TokenEntityInterface::CARD_ID => $cardId
             ], $data));
         }
-        return $token->update($data);
+        $token->update($data);
+        return $token;
     }
 
-    public function getByToken(string $token)
+    /**
+     * @inheritdoc
+     */
+    public function getByToken(string $token): ?Token
     {
         return $this->model->where(TokenEntityInterface::TOKEN, $token)->first();
     }
