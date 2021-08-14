@@ -14,14 +14,19 @@ class TokenRepository implements TokenRepositoryInterface
     ) {
     }
 
-    public function updateToken($cardId, array $data)
+    public function updateToken(string $cardId, array $data)
     {
         $token = $this->model->where(TokenEntityInterface::CARD_ID, $cardId)->first();
         if (!$token) {
-            return $toke->create(array_merge([
+            return $token->create(array_merge([
                 TokenEntityInterface::CARD_ID => $cardId
             ], $data));
         }
-        $token->update($data);
+        return $token->update($data);
+    }
+
+    public function getByToken(string $token)
+    {
+        return $this->model->where(TokenEntityInterface::TOKEN, $token)->first();
     }
 }

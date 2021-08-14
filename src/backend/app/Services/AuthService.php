@@ -10,6 +10,7 @@ use App\Contracts\Token\TokenRepositoryInterface;
 use App\Contracts\Card\CardRepositoryInterface;
 use App\Contracts\JwtInterface;
 use App\Contracts\Token\TokenEntityInterface;
+use Carbon\Carbon;
 
 class AuthService implements AuthServiceInterface
 {
@@ -26,11 +27,16 @@ class AuthService implements AuthServiceInterface
         if (!$card || !Hash::check($password, $card->password)) {
             throw new AuthorizationException('Unauthenticated');
         }
-        $token = $this->jwt->getJwt()->encode($card->toArray());
+        $token = $this->jwt->encode($card->toArray());
         $this->tokenRepository->updateToken($card->id, [
             TokenEntityInterface::TOKEN => $token,
-            TokenEntityInterface::EXPIRATE_AT => new \DateTime()
+            TokenEntityInterface::EXPIRATE_AT => Carbon::now()->addHours(1)
         ]);
         return $token;
+    }
+
+    public function validateToken(string $token)
+    {
+        return $this->tokenRepository->getByToken($token);
     }
 }

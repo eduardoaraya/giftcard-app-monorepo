@@ -26,7 +26,13 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+
+
 $app->configure('app');
+
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\JwtMiddleware::class,
+]);
 
 $app->register(App\Providers\AppServiceProvider::class);
 

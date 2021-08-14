@@ -12,6 +12,8 @@ use App\Contracts\Token\TokenEntityInterface;
 
 class Token extends Model
 {
+    public $timestamps = true;
+
     protected $table = TokenEntityInterface::TABLE_NAME;
 
     protected $fillable = [

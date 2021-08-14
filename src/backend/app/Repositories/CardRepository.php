@@ -17,4 +17,9 @@ class CardRepository implements CardRepositoryInterface
     {
         return $this->model->where(CardEntityInterface::CARD_NUMBER, $cardNumer)->first();
     }
+
+    public function getList()
+    {
+        return $this->model->get();
+    }
 }
