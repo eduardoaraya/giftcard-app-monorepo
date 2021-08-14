@@ -42,8 +42,8 @@ class AuthMiddleware
 
             $fragmentToken = explode(' ', $authHeader);
             if (
-                count($fragmentToken) !== 2 ||
-                reset($fragmentToken) !== self::PREFIX ||
+                count($fragmentToken) !== 2 and
+                reset($fragmentToken) !== self::PREFIX and
                 !end($fragmentToken)
             ) {
                 throw new AuthorizationException('Authorization header is invalid');
