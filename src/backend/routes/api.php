@@ -13,5 +13,10 @@
 |
 */
 
-$router->get('/list', 'CardController@list');
 $router->post('/auth', 'AuthController@execute');
+$router->group([
+    'middleware' => 'auth'
+], function () use ($router) {
+
+    $router->get('/list', 'CardController@list');
+});

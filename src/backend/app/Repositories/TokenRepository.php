@@ -9,19 +9,34 @@ use Exception;
 
 class TokenRepository implements TokenRepositoryInterface
 {
+    /**
+     * @param Token $model
+     */
     public function __construct(
         private Token $model
     ) {
     }
 
-    public function updateToken($cardId, array $data)
+    /**
+     * @inheritdoc
+     */
+    public function updateToken(string $cardId, array $data): Token
     {
         $token = $this->model->where(TokenEntityInterface::CARD_ID, $cardId)->first();
         if (!$token) {
-            return $toke->create(array_merge([
+            return $token->create(array_merge([
                 TokenEntityInterface::CARD_ID => $cardId
             ], $data));
         }
         $token->update($data);
+        return $token;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getByToken(string $token): ?Token
+    {
+        return $this->model->where(TokenEntityInterface::TOKEN, $token)->first();
     }
 }

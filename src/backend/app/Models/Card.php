@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 use App\Contracts\Card\CardEntityInterface;
 
-// implements AuthenticatableContract, AuthorizableContract
 class Card extends Model {
-    // use Authenticatable, Authorizable, HasFactory;
+
+    public $timestamps = true;
 
     protected $table = CardEntityInterface::TABLE_NAME;
 

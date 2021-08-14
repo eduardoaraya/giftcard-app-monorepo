@@ -9,13 +9,19 @@ class JwtService implements JwtInterface
 {
     private JWT $jwt;
 
-    public function __construct(string $secret)
-    {
+    private string $lastExpirate;
+
+    public function __construct(string $secret) {
         $this->jwt = new JWT($secret);
     }
 
-    public function getJwt(): JWT
+    public function encode($data): string
     {
-        return $this->jwt;
+        return $this->jwt->encode($data);
+    }
+
+    public function decode(string $data): array
+    {
+        return $this->jwt->decode($data);
     }
 }

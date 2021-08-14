@@ -5,5 +5,7 @@ use Ahc\Jwt\JWT;
 
 interface JwtInterface
 {
-    public function getJwt(): JWT;
+    public function encode(array $data): string;
+
+    public function decode(string $data): array;
 }
