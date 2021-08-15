@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(JwtInterface::class, function($app) {
+        $this->app->singleton(JwtInterface::class, function ($app) {
             return new JwtService(env('JWT_SECRET'));
         });
 

@@ -12,6 +12,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+
 $app->withFacades();
 $app->withEloquent();
 
@@ -29,12 +30,18 @@ $app->singleton(
 
 
 $app->configure('app');
+$app->configure('cors');
+
+$app->middleware([
+    Fruitcake\Cors\HandleCors::class,
+]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\AuthMiddleware::class,
 ]);
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
