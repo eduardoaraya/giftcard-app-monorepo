@@ -13,10 +13,14 @@
 |
 */
 
-$router->post('/auth', 'AuthController@execute');
 $router->group([
-    'middleware' => 'auth'
+    'prefix' => 'api'
 ], function () use ($router) {
+    $router->post('/auth', 'AuthController@execute');
+    $router->group([
+        'middleware' => 'auth'
+    ], function () use ($router) {
 
-    $router->get('/list', 'CardController@list');
+        $router->get('/list', 'CardController@list');
+    });
 });

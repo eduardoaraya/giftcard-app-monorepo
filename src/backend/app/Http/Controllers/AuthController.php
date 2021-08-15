@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Repositories\TokenRepository;
+<<<<<<< Updated upstream
 use App\Contracts\AuthServiceInterface;
+=======
+use App\Contracts\JwtInterface;
+>>>>>>> Stashed changes
 
 class AuthController extends Controller
 {
