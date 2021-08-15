@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Repositories\TokenRepository;
-<<<<<<< Updated upstream
 use App\Contracts\AuthServiceInterface;
-=======
-use App\Contracts\JwtInterface;
->>>>>>> Stashed changes
 
 class AuthController extends Controller
 {
@@ -18,7 +13,8 @@ class AuthController extends Controller
      */
     public function __construct(
         private AuthServiceInterface $authService
-    ) { }
+    ) {
+    }
 
     /**
      * @param Request $request
@@ -31,16 +27,13 @@ class AuthController extends Controller
         ]);
 
         try {
-
             $token = $this->authService->auth(
                 $request->input('card_number'),
                 $request->input('password')
             );
-
             return response()->json([
                 'token' => $token
             ], 200);
-
         } catch (AuthorizationException $exception) {
 
             return response()->json([
