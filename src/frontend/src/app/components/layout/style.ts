@@ -11,9 +11,7 @@ export const Header = styled.div`
   width: 100%;
   position: fixed;
   height: ${headerHeight}px;
-  /* background: ${({ theme }) => theme.primary}; */
   background: #fff;
-  box-shadow: ${({ theme }) => theme.shadow};
 `;
 
 export const LayoutWrapper = styled.div`
@@ -22,6 +20,7 @@ export const LayoutWrapper = styled.div`
   position: relative;
   padding-top: ${headerHeight}px;
   display: flex;
+  background: #fff;
 `;
 
 export const PageWrapper = styled.div`
@@ -34,7 +33,5 @@ export const Footer = styled.footer`
   position: relative;
   width: 100%;
   height: ${footerHeight}px;
-  /* background: ${({ theme }) => theme.primary}; */
-  box-shadow: ${({ theme }) => theme.shadow};
   background: #fff;
 `;
