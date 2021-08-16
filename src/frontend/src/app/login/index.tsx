@@ -1,36 +1,62 @@
-import React, { useState } from "react";
-import Mask from "../components/mask";
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Loading from "../components/loading";
 import Auth from "../services/auth";
 import { Button, FormControll, Input, Lable } from "../shared/styeld-form";
 import { LoginPage, LoginForm, Logo } from "./style";
 
-const Login = () => {
-  const [cardNumber, setCardNumber] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const Login: React.FC = (): JSX.Element => {
+  const cardNumber = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const history = useHistory();
 
   const submitCredentials = async (event: React.FormEvent) => {
     event.preventDefault();
-    const response = await Auth({
-      password,
-      cardNumber,
-    });
-    console.log(response);
+    setLoading(true);
+    const _cardNumber = cardNumber?.current?.value,
+      _password = password?.current?.value;
+
+    if (_cardNumber?.length !== 16) {
+      setLoading(false);
+      return setErrors(["O Número do cartão deve conter 16 caracteres"]);
+    }
+
+    if (_password?.length !== 6) {
+      setLoading(false);
+      return setErrors(["Senha inválida"]);
+    }
+
+    try {
+      await Auth({ card_number: _cardNumber, password: _password });
+      history.push("/mycard");
+    } catch (err) {
+      setErrors(["Dados inválidos!"]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const applyMask = (event) => {
+    event.target.value = event.target.value.replace(/\D/g, "");
   };
 
   return (
     <LoginPage>
+      <Loading show={loading}></Loading>
       <LoginForm method="get" action="/mycard" onSubmit={submitCredentials}>
         <Logo src="./logo.png" />
         <FormControll>
           <Lable>Número do cartão</Lable>
-          <Mask
+          <Input
             className="login-input"
             type="text"
             name="card_number"
-            patern="onlyNumber"
             required
-            placeholder="Número do cartão"
-            onChange={(event: any) => setCardNumber(event?.target?.value)}
+            onChange={applyMask}
+            ref={cardNumber}
           />
         </FormControll>
         <FormControll>
@@ -40,10 +66,16 @@ const Login = () => {
             type="password"
             name="password"
             required
-            placeholder="Senha"
-            onChange={(event: any) => setCardNumber(event?.target?.value)}
+            ref={password}
           />
         </FormControll>
+        <div className="alert-list">
+          {errors.map((item, i) => (
+            <div key={i} className="alert-danger">
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
         <FormControll>
           <Button className="submit-button">Entrar</Button>
         </FormControll>

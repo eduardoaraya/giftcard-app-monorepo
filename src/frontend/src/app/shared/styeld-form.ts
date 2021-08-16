@@ -12,6 +12,9 @@ export const Input = styled.input<ThemeProps>`
   font-size: 16px;
   background: ${({ theme }) => theme.hightLight};
   border-radius: ${({ theme }) => theme.borderRadius};
+  &:focus {
+    border: solid 1px ${({ theme }) => theme.secundary};
+  }
 `;
 
 export const Button = styled.button<ThemeProps>`

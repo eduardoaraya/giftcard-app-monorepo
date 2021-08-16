@@ -1,17 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import { Input } from "../../shared/styeld-form";
 
-type HandlePartn = {
+type HandlePatern = {
   onlyNumber: (string) => string;
   default: (string) => string;
 };
 
 type MaskProps = {
-  patern?: string | keyof HandlePartn;
+  patern?: string | keyof HandlePatern;
+  ref?: any;
 };
 
-const handles: HandlePartn = {
+const handles: HandlePatern = {
   onlyNumber: (value) => value.replace(/\D/g, ""),
   default: (value) => value,
 };
@@ -21,7 +21,7 @@ const Mask: React.FC<
     React.InputHTMLAttributes<{
       className?: string;
     }>
-> = ({ patern }): JSX.Element => {
+> = ({ patern, ref }): JSX.Element => {
   const applyMask = (event) => {
     const result = patern
       ? handles[patern](event.target.value)
@@ -29,7 +29,7 @@ const Mask: React.FC<
     event.target.value = result;
   };
 
-  return <Input onChange={applyMask} />;
+  return <Input ref={ref} onChange={applyMask} />;
 };
 
 export default Mask;

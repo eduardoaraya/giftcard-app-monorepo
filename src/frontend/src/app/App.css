@@ -12,3 +12,15 @@ body {
 ul {
   list-style: none;
 }
+
+.alert-list {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.alert-danger {
+  color: tomato;
+  font-weight: bold;
+  margin-top: 10px;
+}
