@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Card\CardRepositoryInterface;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class CardController extends Controller
 {
@@ -16,8 +18,23 @@ class CardController extends Controller
     ) {
     }
 
-    public function list()
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getInfo(Request $request): JsonResponse
     {
-        return $this->cardRepository->getList();
+        try {
+            $card = $request->card;
+            $info = $this->cardRepository->getInfo($card->id);
+            return response()->json([
+                'data' => $info
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
