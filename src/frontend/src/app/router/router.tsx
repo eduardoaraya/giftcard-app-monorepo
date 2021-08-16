@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  // Link,
-  // useRouteMatch,
-  // useParams
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "../login";
 import MyCard from "../mycard";
+import { getToken } from "../services/auth";
 
 const RouterNavigation = () => {
   return (
@@ -17,9 +11,11 @@ const RouterNavigation = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route exact path="/mycard">
-          <MyCard />
-        </Route>
+        {getToken() && (
+          <Route exact path="/mycard">
+            <MyCard />
+          </Route>
+        )}
       </Switch>
     </BrowserRouter>
   );
