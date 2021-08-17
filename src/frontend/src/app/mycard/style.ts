@@ -18,7 +18,8 @@ export const CardGrid = styled.div`
     "profile profile"
     "transaction transaction";
   grid-template-columns: 2fr 2fr;
-  grid-template-rows: 50px minmax(200px, 300px) auto;
+
+  grid-template-rows: 50px minmax(200px, auto) auto;
   gap: 20px;
   background: ${({ theme }) => theme.hightLight};
   padding: 20px;
@@ -42,14 +43,20 @@ export const CardProfile = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: row;
+  @media (max-width: 600px) {
+    & {
+      flex-direction: column;
+    }
+  }
   .card-image {
     height: 200px;
     background: url("./giftcard.png");
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: 20px;
     flex: 1;
+    min-height: 200px;
   }
 
   .card-info {
@@ -57,7 +64,7 @@ export const CardProfile = styled.div`
     padding: 20px 5px;
     &.card-number {
       span {
-        font-size: 0.89em;
+        font-size: 1em;
         font-weight: bolder;
         line-height: 26px;
         display: block;
@@ -65,6 +72,7 @@ export const CardProfile = styled.div`
           color: ${({ theme }) => theme.secundary};
         }
         span {
+          font-size: 0.89em;
           font-weight: normal;
           color: ${({ theme }) => theme.dark};
         }
@@ -96,10 +104,17 @@ export const CardProfile = styled.div`
 export const CardTransactions = styled.div`
   grid-area: transaction;
   padding: 10px;
-
+  @media (max-width: 600px) {
+    .table-wrapper {
+      overflow-x: scroll;
+    }
+  }
   table {
     width: 100%;
-    th {
+    @media (max-width: 600px) {
+      & {
+        min-width: 600px;
+      }
     }
     tr,
     td,
@@ -112,9 +127,21 @@ export const CardTransactions = styled.div`
       tr {
         cursor: pointer;
         z-index: 3;
-
+        height: 45px;
         &:nth-child(even) {
           background: ${({ theme }) => theme.hightLight};
+        }
+      }
+
+      td {
+        text-transform: capitalize;
+
+        .flag {
+          background: ${({ theme }) => theme.primary};
+          padding: 5px 10px;
+          border-radius: ${({ theme }) => theme.borderRadius};
+          color: ${({ theme }) => theme.hightLight};
+          /* box-shadow: ${({ theme }) => theme.shadow}; */
         }
       }
     }
