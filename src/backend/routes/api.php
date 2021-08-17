@@ -22,5 +22,6 @@ $router->group([
     ], function () use ($router) {
 
         $router->get('/info', 'CardController@getInfo');
+        $router->get('/transactions', 'CardController@getTransactions');
     });
 });
