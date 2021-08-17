@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Loading from "../components/loading";
 import Auth from "../services/auth";
 import { Button, FormControll, Input, Lable } from "../shared/styeld-form";
-import { LoginPage, LoginForm, Logo } from "./style";
+import { LoginPage, LoginForm } from "./style";
 
 const Login: React.FC = (): JSX.Element => {
   const cardNumber = useRef<HTMLInputElement>(null);
@@ -12,6 +13,13 @@ const Login: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const history = useHistory();
+
+  useEffect(() => {
+    return () => {
+      setErrors([]);
+      setLoading(false);
+    };
+  }, []);
 
   const submitCredentials = async (event: React.FormEvent) => {
     event.preventDefault();
