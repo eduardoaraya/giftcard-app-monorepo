@@ -43,8 +43,11 @@ TODO_APIKEY=
 
 ### Endpoints
 
-    - backend: http://backend.localhost
-    - frontend: http://frontend.localhost
+- backend: http://backend.localhost/api/
+- frontend: http://frontend.localhost
+
+\*Send request to http://backend.localhost/api/list for get all cards registred in application.
+You can authenticate with the card number and default password: **123123**
 
 ### Appliaction using:
 
