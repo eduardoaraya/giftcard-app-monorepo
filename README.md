@@ -28,7 +28,7 @@ TODO_APIKEY=
 
 ---
 
-## Instalation
+## Installation
 
 - Run `docker-compose up -d`
 - Run `docker-compose exec php composer install`
