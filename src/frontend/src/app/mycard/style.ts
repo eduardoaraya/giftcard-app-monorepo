@@ -20,7 +20,7 @@ export const CardGrid = styled.div`
   grid-template-columns: 2fr 2fr;
   grid-template-rows: 50px minmax(200px, 300px) auto;
   gap: 20px;
-  background: #fff;
+  background: ${({ theme }) => theme.hightLight};
   padding: 20px;
   box-shadow: ${({ theme }) => theme.shadow};
   border-radius: ${({ theme }) => theme.borderRadius};

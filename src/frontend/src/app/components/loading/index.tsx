@@ -8,10 +8,11 @@ const Spinner = styled.div<ThemeProps>`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(250, 250, 250, 0.35);
+  background: rgba(0, 0, 0, 0.55);
 
   .loader,
   .loader:before,

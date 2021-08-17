@@ -2,15 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Lumen\Auth\Authorizable;
 use App\Contracts\Card\CardEntityInterface;
 
-class Card extends Model {
+class Card extends Model
+{
 
     public $timestamps = true;
 
@@ -25,4 +21,16 @@ class Card extends Model {
     protected $hidden = [
         'password',
     ];
+
+    public function messages()
+    {
+        return $this->hasMany(Messages::class, 'card_id');
+    }
+
+    public function scopeLastMessage($query)
+    {
+        return $query->whereHas('messages', function ($messagesQuery) {
+            $messagesQuery->getLast();
+        });
+    }
 }

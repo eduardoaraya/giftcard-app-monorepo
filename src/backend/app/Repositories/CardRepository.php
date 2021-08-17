@@ -22,4 +22,11 @@ class CardRepository implements CardRepositoryInterface
     {
         return $this->model->get();
     }
+
+    public function getInfo(string $cardId)
+    {
+        $card = $this->model->findOrFail($cardId);
+        $card->load('messages');
+        return $card;
+    }
 }

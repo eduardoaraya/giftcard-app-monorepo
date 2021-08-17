@@ -21,6 +21,7 @@ $router->group([
         'middleware' => 'auth'
     ], function () use ($router) {
 
-        $router->get('/list', 'CardController@list');
+        $router->get('/info', 'CardController@getInfo');
+        $router->get('/transactions', 'CardController@getTransactions');
     });
 });
