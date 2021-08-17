@@ -96,7 +96,6 @@ const MyCard = () => {
         <CardProfile>
           <div className="card-image"></div>
           <div className="card-info card-number">
-            <span>Informações:</span>
             <span className="card-owner label">
               Nome do titular: <span>{cardInfo.name}</span>
             </span>
@@ -113,7 +112,7 @@ const MyCard = () => {
               </li>
               <li>
                 <p className="label">Saldo</p>
-                <p>{getPrice(cardInfo.value)}</p>
+                <p>R$ {getPrice(cardInfo.value)}</p>
               </li>
               <li>
                 <p className="label">Validade</p>
@@ -123,32 +122,34 @@ const MyCard = () => {
           </div>
         </CardProfile>
         <CardTransactions>
-          <table cellSpacing="0">
-            <thead>
-              <tr>
-                <th>Tipo de Transação</th>
-                <th>Data da Transação</th>
-                <th>Valor</th>
-                <th>Identificação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((transaction: any, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{transaction.transaction_type}</td>
-                    <td>{transaction.transaction_date}</td>
-                    <td>R$ {transaction.transaction_value}</td>
-                    <td>
-                      <span className="ecommerce">
-                        {transaction.store_identification}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="table-wrapper">
+            <table cellSpacing="0">
+              <thead>
+                <tr>
+                  <th>Tipo de Transação</th>
+                  <th>Data da Transação</th>
+                  <th>Valor</th>
+                  <th>Identificação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((transaction: any, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{transaction.transaction_type}</td>
+                      <td>{transaction.transaction_date}</td>
+                      <td>R$ {transaction.transaction_value}</td>
+                      <td>
+                        <span className="flag">
+                          {transaction.store_identification}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
           <Paginate nextPage={nextPage} pagination={pagination} />
         </CardTransactions>
       </CardGrid>
