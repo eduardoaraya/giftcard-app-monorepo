@@ -1,12 +1,3 @@
-## Instalation
-
-- Run `docker-compose up -d`
-- Run `docker-compose exec php composer install`
-- Run `docker-compose exec front yarn`
-- Run `docker-compose exec front yarn build`
-
----
-
 ## Configurations
 
 Copy and paste the file .env.example and rename to .env. Now just settings the config variables.
@@ -37,7 +28,23 @@ TODO_APIKEY=
 
 ---
 
+## Instalation
+
+- Run `docker-compose up -d`
+- Run `docker-compose exec php composer install`
+- Run `docker-compose exec php php artisan migrate`
+- Run `docker-compose exec php php artisan db:seed`
+- Run `docker-compose exec front yarn`
+- Run `docker-compose exec front yarn build`
+
+---
+
 ## Informations
+
+### Endpoints
+
+    - backend: http://backend.localhost
+    - frontend: http://frontend.localhost
 
 ### Appliaction using:
 

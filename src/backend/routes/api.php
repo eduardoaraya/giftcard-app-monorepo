@@ -17,6 +17,8 @@ $router->group([
     'prefix' => 'api'
 ], function () use ($router) {
     $router->post('/auth', 'AuthController@execute');
+    $router->get('/list', 'CardController@list');
+
     $router->group([
         'middleware' => 'auth'
     ], function () use ($router) {

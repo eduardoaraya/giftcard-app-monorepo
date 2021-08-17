@@ -42,6 +42,25 @@ class CardController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function list(): JsonResponse
+    {
+        try {
+            $list = $this->cardRepository->getList();
+            return response()->json([
+                'data' => $list
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Get transactions by api
      *
      * @return JsonResponse
