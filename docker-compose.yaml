@@ -40,6 +40,7 @@ services:
       - 80:80
   front:
     image: node:14
+    working_dir: /var/www/frontend
     volumes:
       - ./src/frontend:/var/www/frontend
     ports:
