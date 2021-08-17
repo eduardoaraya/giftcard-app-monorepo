@@ -13,9 +13,6 @@ use Exception;
 
 class AuthMiddleware
 {
-
-    const PREFIX = 'Bearer';
-
     /**
      * @param AuthServiceInterface $authService
      */
@@ -34,26 +31,10 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next): JsonResponse | Response
     {
         try {
-
-            $authHeader = $request->header('Authorization');
-            if (!$authHeader) {
-                throw new AuthorizationException('Authorization header not provided.');
-            }
-
-            $fragmentToken = explode(' ', $authHeader);
-            if (
-                count($fragmentToken) !== 2 and
-                reset($fragmentToken) !== self::PREFIX and
-                !end($fragmentToken)
-            ) {
-                throw new AuthorizationException('Authorization header is invalid');
-            }
-
-            $token = $this->authService->validateToken(end($fragmentToken));
-            if ($this->authService->mustRefresh($token)) {
-                $this->authService->refreshToken($token);
-            }
-
+            $token = $this->authService->handleRequest($request);
+            $request->request->add([
+                'card' => $token->card
+            ]);
             return $next($request);
         } catch (AuthorizationException $e) {
             return $this->getResponseUnauthorized($e->getMessage());

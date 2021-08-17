@@ -8,7 +8,6 @@ export const LoginPage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.hightLight};
   flex: 1;
   padding: 25px;
 `;
@@ -23,7 +22,7 @@ export const LoginForm = styled.form<ThemeProps>`
   box-shadow: ${({ theme }) => theme.shadow};
   padding: 45px 35px;
   border-radius: ${({ theme }) => theme.borderRadius};
-  background: #fff;
+  background: ${({ theme }) => theme.hightLight};
 
   .login-input {
     margin-top: 12px;

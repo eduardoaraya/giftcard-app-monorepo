@@ -12,6 +12,7 @@ export const Input = styled.input<ThemeProps>`
   font-size: 16px;
   background: ${({ theme }) => theme.hightLight};
   border-radius: ${({ theme }) => theme.borderRadius};
+  border: solid 1px ${({ theme }) => theme.primary};
   &:focus {
     border: solid 1px ${({ theme }) => theme.secundary};
   }
@@ -22,7 +23,7 @@ export const Button = styled.button<ThemeProps>`
   height: auto;
   padding: 10px 20px;
   border: none;
-  background: ${({ theme }) => theme.secundary};
+  background: ${({ theme }) => theme.primary};
   outline: none;
   color: #fff;
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -32,8 +33,7 @@ export const Button = styled.button<ThemeProps>`
   font-weight: bolder;
   transition: 0.2s;
   &:hover {
-    background: #fff;
-    color: ${({ theme }) => theme.secundary};
+    background: ${({ theme }) => theme.secundary};
   }
 `;
 

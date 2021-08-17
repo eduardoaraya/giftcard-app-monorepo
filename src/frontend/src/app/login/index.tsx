@@ -55,7 +55,7 @@ const Login: React.FC = (): JSX.Element => {
     <LoginPage>
       <Loading show={loading}></Loading>
       <LoginForm method="get" action="/mycard" onSubmit={submitCredentials}>
-        <Logo src="./logo.png" />
+        {/* <Logo src="./logo.png" /> */}
         <FormControll>
           <Lable>Número do cartão</Lable>
           <Input

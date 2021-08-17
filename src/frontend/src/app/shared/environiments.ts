@@ -13,10 +13,10 @@ export type ThemeProps = {
 };
 
 export const theme: GlobalTheme = {
-  primary: "#1396d2",
-  secundary: "#d25313",
-  hightLight: "#F9F9F9",
-  shadow: "0px 0px 10px -3px rgba(0, 0, 0, 0.36)",
+  primary: "#8f3d8f",
+  secundary: "#723172",
+  hightLight: "#FFF",
+  shadow: "0px 10px 20px -5px rgba(0, 0, 0, 0.46)",
   dark: "#222",
   borderRadius: "5px",
   fontColor: "#222",

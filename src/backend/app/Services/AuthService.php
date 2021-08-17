@@ -10,7 +10,9 @@ use App\Contracts\Token\TokenRepositoryInterface;
 use App\Contracts\Card\CardRepositoryInterface;
 use App\Contracts\JwtInterface;
 use App\Contracts\Token\TokenEntityInterface;
+use App\Models\Token;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AuthService implements AuthServiceInterface
 {
@@ -74,5 +76,32 @@ class AuthService implements AuthServiceInterface
     public function mustRefresh(\App\Models\Token $token): bool
     {
         return Carbon::now()->diffInMinutes($token->expirate_at) < 10;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function handleRequest(Request $request): Token
+    {
+        $authHeader = $request->header('Authorization');
+        if (!$authHeader) {
+            throw new AuthorizationException('Authorization header not provided.');
+        }
+
+        $fragmentToken = explode(' ', $authHeader);
+        if (
+            count($fragmentToken) !== 2 and
+            reset($fragmentToken) !== self::PREFIX and
+            !end($fragmentToken)
+        ) {
+            throw new AuthorizationException('Authorization header is invalid');
+        }
+
+        $token = $this->validateToken(end($fragmentToken));
+        if ($this->mustRefresh($token)) {
+            $this->refreshToken($token);
+        }
+
+        return $token;
     }
 }
