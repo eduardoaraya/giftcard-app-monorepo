@@ -24,7 +24,7 @@ class TokenRepository implements TokenRepositoryInterface
     {
         $token = $this->model->where(TokenEntityInterface::CARD_ID, $cardId)->first();
         if (!$token) {
-            return $token->create(array_merge([
+            return $this->model->create(array_merge([
                 TokenEntityInterface::CARD_ID => $cardId
             ], $data));
         }
